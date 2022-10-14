@@ -2,5 +2,59 @@
   Layout = "_Layout";
 }
 
-<h1>Welcome to the Silly Factory Database</h1>
-<p>@Html.ActionLink("See all Engineers", "Index", "Engineers")</p> <p>@Html.ActionLink("See all Machines", "Index", "Machines")</p>
+@using Factory.Models;
+@model dynamic;
+
+<h1 class="d-flex flex-row justify-content-center mt-4" style="color: white;">SillyStringz Factory</h1>
+@if(@Model.Engineer.Count == 0 && @Model.Machine.Count == 0)
+{
+  <br>
+  <p class="d-flex flex-row justify-content-center mt-4">No Engineers or Machines logged.</p>
+}
+else
+{
+  <div class="row">
+    <div class="col-6">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+              <th>Current Machines</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach(var machine in Model.Machine)
+          {
+          <tr>
+              <td class="items">@Html.ActionLink($"{machine.MachineName}", "Details", "Machines", new{id = machine.MachineId, @class="items"})</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+              <th>Current Engineers</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach(var engineer in Model.Engineer)
+          {
+          <tr>
+              <td class="items">@Html.ActionLink($"{engineer.Name}", "Details", "Engineers", new{id = engineer.EngineerId, @class="items"})</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+}
+<br>
+  <div class="d-flex flex-row justify-content-center my-4">
+    <h4>@Html.ActionLink("View All Machines", "Index", "Machines")</h4>
+  </div>
+<br>
+  <div class="d-flex flex-row justify-content-center my-4">
+    <h4>@Html.ActionLink("View All Engineers", "Index", "Engineers")</h4>
+  </div>

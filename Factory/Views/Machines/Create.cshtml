@@ -12,13 +12,13 @@
 
   @using (Html.BeginForm())
   {
-    @Html.LabelFor(model => model.MachineName)
+    @Html.LabelFor(model => model.MachineName, "Name", new { @class = "mx-2"})
     @Html.TextBoxFor(model => model.MachineName)
-
-    @Html.LabelFor(model => model.Description)
+    
+    @Html.LabelFor(model => model.Description, null, new { @class = "mx-2"})
     @Html.TextBoxFor(model => model.Description)
 
-    @Html.Label("Select engineer")
+    @Html.Label("Select engineer", null, new { @class = "mx-2"})
     @Html.DropDownList("EngineerId")
 
     <input type="submit" value="Add new machine" class="btn btn-primary" />
