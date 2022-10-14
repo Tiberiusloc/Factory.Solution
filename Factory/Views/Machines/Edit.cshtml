@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<div class="container">
+  <h4 class="text-center my-4">Edit this machine: @Html.DisplayFor(model => model.Description)</h4>
+  <div class="d-flex flex-row justify-content-center m-2">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.MachineId)
+
+        @Html.LabelFor(model => model.Description, null, new { @class ="mx-2"})
+        @Html.EditorFor(model => model.Description, null, new { @class ="mx-2"})
+
+        @Html.Label("Select engineer", null, new { @class ="mx-1"})
+        @Html.DropDownList("EngineerId", null, new { @class ="mx-1"})
+
+        <input type="submit" value="Save" class="btn btn-primary mx-2" />
+    }
+  </div>
+  <div class="d-flex flex-row justify-content-center mt-4">
+    <p>@Html.ActionLink("Back to machines list", "Index")</p>
+  </div>
+</div>
